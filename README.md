@@ -40,7 +40,7 @@ myList.appendChild(newItem);
 ### Q3: What is Event Bubbling? How does it work?
 **Answer:** Event Bubbling means when an event happens on an element, it starts from that element and then moves upwards to its parent elements.
 
-How it works:
+**How it works:**
 
 If a button is inside a div, and the div is inside the body:
 
@@ -62,18 +62,14 @@ div.addEventListener("click", function () {
 ```
 ### Q4: What is Event Delegation in JavaScript? Why is it useful?
 
-**Answer:** Event Delegation is a technique where we add one event listener to a parent element instead of adding listeners to every child element.
-
-**How it works:**
-It works when events bubble up, the parent can detect which child was clicked using event.target.
+**Answer:** Event Delegation is a method where we add one event listener to a parent element instead of adding listeners to every child element.
 
 **Why it is useful:**
+. Clean Code: Reduces code repetition.
+. Dynamic Elements: It automatically works for new elements added later.
+. Memory Efficiency: Saves memory by using only one listener for many items.
 
-. Better performance: Only one listener needed, even for many child elements
 
-. Handles new elements: Newly added children are automatically handled
-
-. Cleaner code: Makes code shorter and easier to manage
 
 For example:
 ```javascript
