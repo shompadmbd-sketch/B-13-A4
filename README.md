@@ -65,9 +65,10 @@ div.addEventListener("click", function () {
 **Answer:** Event Delegation is a method where we add one event listener to a parent element instead of adding listeners to every child element.
 
 **Why it is useful:**
-. Clean Code: Reduces code repetition.
-. Dynamic Elements: It automatically works for new elements added later.
-. Memory Efficiency: Saves memory by using only one listener for many items.
+
+- First point Clean Code: Reduces code repetition.
+- Second point Dynamic Elements: It automatically works for new elements added later.
+- Third point Memory Efficiency: Saves memory by using only one listener for many items.
 
 
 
