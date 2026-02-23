@@ -9,21 +9,17 @@ function calculateCount() {
     const rejectedDisplay = document.getElementById('rejected-count');
     const tabLabel = document.getElementById('tab-jobs-count');
 
-    
     interviewDisplay.innerText = interviewList.length;
     rejectedDisplay.innerText = rejectedList.length;
 
-   
+
     if (currentStatus === 'all-filter-btn') {
         const totalInSystem = document.querySelectorAll('.job-card').length;
         totalDisplay.innerText = totalInSystem;
         tabLabel.innerText = `${totalInSystem} jobs`;
     } else {
-        
         const totalNow = totalDisplay.innerText; 
         const visibleCards = document.getElementById('all-cards').children.length;
-        
-       
         tabLabel.innerText = `${visibleCards} of ${totalNow} jobs`;
     }
 }
@@ -68,26 +64,47 @@ document.getElementById('main-container').addEventListener('click', function (ev
         description: card.querySelector('.job-desc').innerText
     };
 
+  
     if (event.target.classList.contains('interview-btn')) {
+
         card.querySelector('.status-btn').innerText = 'INTERVIEW';
         card.querySelector('.status-btn').style.color = '#10B981';
 
-        
+       
         if (!interviewList.some(item => item.companyName === companyName)) {
             interviewList.push(cardInfo);
         }
+       
+        rejectedList = rejectedList.filter(item => item.companyName !== companyName);
     } 
+    
+  
     else if (event.target.classList.contains('rejected-btn')) {
+       
         card.querySelector('.status-btn').innerText = 'REJECTED';
         card.querySelector('.status-btn').style.color = '#EF4444';
 
-       
+     
         if (!rejectedList.some(item => item.companyName === companyName)) {
             rejectedList.push(cardInfo);
         }
+  
+        interviewList = interviewList.filter(item => item.companyName !== companyName);
     }
+    
+
     else if (event.target.closest('.delete-btn')) {
         card.remove();
+     
+        interviewList = interviewList.filter(item => item.companyName !== companyName);
+        rejectedList = rejectedList.filter(item => item.companyName !== companyName);
+    }
+
+ 
+    if (currentStatus === 'interview-filter-btn') {
+        renderFilteredCards(interviewList, '#10B981', 'INTERVIEW');
+    } else if (currentStatus === 'rejected-filter-btn') {
+        renderFilteredCards(rejectedList, '#EF4444', 'REJECTED');
     }
 
     calculateCount();
@@ -129,6 +146,5 @@ function renderFilteredCards(list, color, statusText) {
         allCardSection.appendChild(div);
     }
 }
-
 
 calculateCount();

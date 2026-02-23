@@ -89,7 +89,7 @@ parentDiv.addEventListener("click", function (event) {
 
 **Answer:** The main differences are shown below:
 
-| Method | Stops | Example Usage |
+| Method | Stops | Example |
 |--------|-------|---------------|
 | `preventDefault()` | Default browser action | Clicking a link but the page does not open |
 | `stopPropagation()` | Event bubbling up to parent elements | Clicking a child button does not trigger parent click |
