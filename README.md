@@ -44,11 +44,11 @@ myList.appendChild(newItem);
 
 If a button is inside a div, and the div is inside the body:
 
-First, the event runs on the button
+- First, the event runs on the button
 
-Then, it goes to the div
+- Then, it goes to the div
 
-Finally, it reaches the body and document
+- Finally, it reaches the body and document
 
 For example:
 ```javascript
@@ -66,9 +66,9 @@ div.addEventListener("click", function () {
 
 **Why it is useful:**
 
-- First point Clean Code: Reduces code repetition.
-- Second point Dynamic Elements: It automatically works for new elements added later.
-- Third point Memory Efficiency: Saves memory by using only one listener for many items.
+-  Clean Code: Reduces code repetition.
+-  Dynamic Elements: It automatically works for new elements added later.
+-  Memory Efficiency: Saves memory by using only one listener for many items.
 
 
 
