@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-    <!-- herader part -->
+    <!-- herader start -->
     <header class="w-[95%] sm:w-[90%] max-w-[1110px] mx-auto">
     <h1 class="text-[#002C5C] mt-[60px] text-[24px] sm:text-[28px] md:text-[32px] font-bold mb-5">Job Application Tracker</h1>
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 ">
@@ -41,11 +41,13 @@
     </div>
 </header>
 <!-- header end -->
-
+<!-- hr start -->
 <hr class="w-[80%] max-w-[1110px] border-[#e6e7e9FF] mx-auto my-[30px] ">
-
+<!-- hr end -->
+ <!-- main layout start -->
 <main id="main-container" class="w-[95%] sm:w-[90%] max-w-[1110px] mx-auto">
     <div class="flex justify-between">
+        <!-- count  -->
         <div>
             <h3 class="text-[20px] text-[#002C5C] ">Available Jobs</h3>
         </div>
@@ -55,13 +57,14 @@
     </div>
 
     <div class="mt-6 ">
+        <!-- filter btn -->
         <button id="all-filter-btn" onclick="toggleStyle('all-filter-btn')" class="bg-[#3B82F6] py-2 px-5 text-white text-[12px] font-semibold mr-2 cursor-pointer rounded">All</button>
         <button id="interview-filter-btn" onclick="toggleStyle('interview-filter-btn')" class="bg-[#f1f2f4FF] py-2 px-5 font-semibold text-[#64748B] text-[12px] mr-2 cursor-pointer rounded">Interview</button>
         <button id="rejected-filter-btn" onclick="toggleStyle('rejected-filter-btn')" class="bg-[#f1f2f4FF] py-2 px-5 font-semibold text-[#64748B] text-[12px] cursor-pointer rounded">Rejected</button>
     </div>
 
     <section id="all-cards" class="mt-10">
-        
+        <!-- 8 card  -->
         <div class="job-card flex justify-between bg-[#ffffffFF] border border-[#f1f2f4FF] rounded-xl py-6 px-6 mb-5">
             <div>
                 <h3 class="company-name text-[18px] text-[#002C5C] font-semibold mb-1">Mobile First Corp</h3>
@@ -183,7 +186,7 @@
         </div>
 
     </section>
-
+     <!-- no jobs available or empty state -->
     <section id="empty-state" class="mb-[100px] hidden">
          <div class="bg-[#ffffffFF] border border-[#f1f2f4FF] rounded-xl py-6 px-6 mt-4 flex flex-col items-center text-center">
              <img src="./images/jobs.png" alt="">
@@ -191,7 +194,9 @@
              <p class="text-[16px] text-[#64748B] font-normal">Check back soon for new job opportunities</p>
         </div> 
     </section>
+    <!-- script link -->
     <script src="./script/script.js"></script>
 </main>
+<!-- main end -->
 </body>
 </html>
