@@ -9,7 +9,7 @@
 | **querySelectorAll** | Selects all elements that match a CSS selector; returns a static list. | CSS selector | NodeList | Yes | `document.querySelectorAll(".text")` |
  
 
-
+---
 ### 2: How do you create and insert a new element into the DOM?
 
 **Answer:** Creating and inserting a new element into the DOM is done in two main steps.
@@ -37,6 +37,7 @@ prepend() → adds the element at the beginning
 const myList = document.getElementById("myList");
 myList.appendChild(newItem);
 ```
+---
 ### Q3: What is Event Bubbling? How does it work?
 **Answer:** Event Bubbling means when an event happens on an element, it starts from that element and then moves upwards to its parent elements.
 
@@ -60,6 +61,7 @@ div.addEventListener("click", function () {
   console.log("Div clicked");
 });
 ```
+---
 ### Q4: What is Event Delegation in JavaScript? Why is it useful?
 
 **Answer:** Event Delegation is a method where we add one event listener to a parent element instead of adding listeners to every child element.
@@ -81,7 +83,7 @@ parentDiv.addEventListener("click", function (event) {
   }
 });
 ```
-
+---
 ## Q5: Difference Between `preventDefault()` and `stopPropagation()`
 
 **Answer:** The main differences are shown below:
