@@ -1,3 +1,4 @@
+
 let interviewList = [];
 let rejectedList = [];
 let currentStatus = 'all-filter-btn';
@@ -65,7 +66,7 @@ document.getElementById('main-container').addEventListener('click', function (ev
 
     const statusButton = card.querySelector('.status-btn');
 
-    
+  
     if (event.target.classList.contains('interview-btn')) {
         statusButton.innerText = 'INTERVIEW';
         statusButton.style.color = '#10B981';
@@ -84,12 +85,12 @@ document.getElementById('main-container').addEventListener('click', function (ev
         if (!exists) {
             interviewList.push(cardInfo);
         }
-        
+       
 
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
     } 
     
-   
+    
     else if (event.target.classList.contains('rejected-btn')) {
         statusButton.innerText = 'REJECTED';
         statusButton.style.color = '#EF4444';
@@ -97,7 +98,6 @@ document.getElementById('main-container').addEventListener('click', function (ev
         statusButton.style.borderWidth = '1px';
         statusButton.style.borderStyle = 'solid';
 
-        
         let exists = false;
         for (const item of rejectedList) {
             if (item.companyName === companyName) {
@@ -108,7 +108,7 @@ document.getElementById('main-container').addEventListener('click', function (ev
         if (!exists) {
             rejectedList.push(cardInfo);
         }
-        // ------------------------------------
+        
 
         interviewList = interviewList.filter(item => item.companyName !== companyName);
     }
