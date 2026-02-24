@@ -23,6 +23,7 @@ function calculateCount() {
     }
 }
 
+
 function toggleStyle(id) {
     currentStatus = id;
     const buttons = ['all-filter-btn', 'interview-filter-btn', 'rejected-filter-btn'];
@@ -64,10 +65,11 @@ document.getElementById('main-container').addEventListener('click', function (ev
 
     const statusButton = card.querySelector('.status-btn');
 
+   
     if (event.target.classList.contains('interview-btn')) {
         statusButton.innerText = 'INTERVIEW';
         statusButton.style.color = '#10B981';
-        statusButton.style.borderColor = '#10B981';
+        statusButton.style.borderColor = '#10B981'; 
         statusButton.style.borderWidth = '1px';
         statusButton.style.borderStyle = 'solid';
 
@@ -77,10 +79,11 @@ document.getElementById('main-container').addEventListener('click', function (ev
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
     } 
     
+  
     else if (event.target.classList.contains('rejected-btn')) {
         statusButton.innerText = 'REJECTED';
         statusButton.style.color = '#EF4444';
-        statusButton.style.borderColor = '#EF4444';
+        statusButton.style.borderColor = '#EF4444'; 
         statusButton.style.borderWidth = '1px';
         statusButton.style.borderStyle = 'solid';
 
@@ -90,12 +93,22 @@ document.getElementById('main-container').addEventListener('click', function (ev
         interviewList = interviewList.filter(item => item.companyName !== companyName);
     }
     
+    
     else if (event.target.closest('.delete-btn')) {
         card.remove();
         interviewList = interviewList.filter(item => item.companyName !== companyName);
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
+
+       
+        const allCardSection = document.getElementById('all-cards');
+        const emptyState = document.getElementById('empty-state');
+        if (allCardSection && allCardSection.children.length === 0) {
+            allCardSection.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+        }
     }
 
+    
     if (currentStatus === 'interview-filter-btn') {
         renderFilteredCards(interviewList, '#10B981', 'INTERVIEW');
     } else if (currentStatus === 'rejected-filter-btn') {
@@ -125,9 +138,9 @@ function renderFilteredCards(list, color, statusText) {
         let div = document.createElement('div');
         div.className = 'job-card flex justify-between bg-white border border-gray-200 rounded-xl py-6 px-6 mb-5';
         
-        
-        const interviewHoverClasses = "hover:bg-[#10b981FF] hover:text-white transition-all";
-        const rejectedHoverClasses = "hover:bg-[#ef4444] hover:text-white transition-all";
+      
+        const interviewHover = "hover:bg-[#10b981FF] hover:text-white transition-all";
+        const rejectedHover = "hover:bg-[#ef4444] hover:text-white transition-all";
 
         div.innerHTML = `
             <div>
@@ -142,8 +155,8 @@ function renderFilteredCards(list, color, statusText) {
                 
                 <p class="job-desc text-[#323B49] text-[14px] font-normal mb-5 mt-2">${job.description}</p>
                 <div class="flex gap-2">
-                    <button class="interview-btn py-2 px-3 border border-[#10b981FF] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#10b981FF] ${interviewHoverClasses}">Interview</button>
-                    <button class="rejected-btn py-2 px-3 border border-[#EF4444] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#EF4444] ${rejectedHoverClasses}">Rejected</button>
+                    <button class="interview-btn py-2 px-3 border border-[#10b981FF] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#10b981FF] ${interviewHover}">Interview</button>
+                    <button class="rejected-btn py-2 px-3 border border-[#EF4444] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#EF4444] ${rejectedHover}">Rejected</button>
                 </div>
             </div>
             <div><button class="delete-btn cursor-pointer"><i class="fa-regular fa-trash-can text-[#64748B]"></i></button></div>
@@ -151,5 +164,6 @@ function renderFilteredCards(list, color, statusText) {
         allCardSection.appendChild(div);
     }
 }
+
 
 calculateCount();
