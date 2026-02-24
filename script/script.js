@@ -65,41 +65,60 @@ document.getElementById('main-container').addEventListener('click', function (ev
 
     const statusButton = card.querySelector('.status-btn');
 
-   
+    
     if (event.target.classList.contains('interview-btn')) {
         statusButton.innerText = 'INTERVIEW';
         statusButton.style.color = '#10B981';
-        statusButton.style.borderColor = '#10B981'; 
+        statusButton.style.borderColor = '#10B981';
         statusButton.style.borderWidth = '1px';
         statusButton.style.borderStyle = 'solid';
 
-        if (!interviewList.some(item => item.companyName === companyName)) {
+       
+        let exists = false;
+        for (const item of interviewList) {
+            if (item.companyName === companyName) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
             interviewList.push(cardInfo);
         }
+        
+
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
     } 
     
-  
+   
     else if (event.target.classList.contains('rejected-btn')) {
         statusButton.innerText = 'REJECTED';
         statusButton.style.color = '#EF4444';
-        statusButton.style.borderColor = '#EF4444'; 
+        statusButton.style.borderColor = '#EF4444';
         statusButton.style.borderWidth = '1px';
         statusButton.style.borderStyle = 'solid';
 
-        if (!rejectedList.some(item => item.companyName === companyName)) {
+        
+        let exists = false;
+        for (const item of rejectedList) {
+            if (item.companyName === companyName) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
             rejectedList.push(cardInfo);
         }
+        // ------------------------------------
+
         interviewList = interviewList.filter(item => item.companyName !== companyName);
     }
     
-    
+  
     else if (event.target.closest('.delete-btn')) {
         card.remove();
         interviewList = interviewList.filter(item => item.companyName !== companyName);
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
 
-       
         const allCardSection = document.getElementById('all-cards');
         const emptyState = document.getElementById('empty-state');
         if (allCardSection && allCardSection.children.length === 0) {
@@ -108,7 +127,6 @@ document.getElementById('main-container').addEventListener('click', function (ev
         }
     }
 
-    
     if (currentStatus === 'interview-filter-btn') {
         renderFilteredCards(interviewList, '#10B981', 'INTERVIEW');
     } else if (currentStatus === 'rejected-filter-btn') {
@@ -138,7 +156,6 @@ function renderFilteredCards(list, color, statusText) {
         let div = document.createElement('div');
         div.className = 'job-card flex justify-between bg-white border border-gray-200 rounded-xl py-6 px-6 mb-5';
         
-      
         const interviewHover = "hover:bg-[#10b981FF] hover:text-white transition-all";
         const rejectedHover = "hover:bg-[#ef4444] hover:text-white transition-all";
 
@@ -164,6 +181,5 @@ function renderFilteredCards(list, color, statusText) {
         allCardSection.appendChild(div);
     }
 }
-
 
 calculateCount();
