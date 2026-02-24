@@ -12,7 +12,6 @@ function calculateCount() {
     interviewDisplay.innerText = interviewList.length;
     rejectedDisplay.innerText = rejectedList.length;
 
-
     if (currentStatus === 'all-filter-btn') {
         const totalInSystem = document.querySelectorAll('.job-card').length;
         totalDisplay.innerText = totalInSystem;
@@ -23,7 +22,6 @@ function calculateCount() {
         tabLabel.innerText = `${visibleCards} of ${totalNow} jobs`;
     }
 }
-
 
 function toggleStyle(id) {
     currentStatus = id;
@@ -64,43 +62,40 @@ document.getElementById('main-container').addEventListener('click', function (ev
         description: card.querySelector('.job-desc').innerText
     };
 
-  
+    const statusButton = card.querySelector('.status-btn');
+
     if (event.target.classList.contains('interview-btn')) {
+        statusButton.innerText = 'INTERVIEW';
+        statusButton.style.color = '#10B981';
+        statusButton.style.borderColor = '#10B981';
+        statusButton.style.borderWidth = '1px';
+        statusButton.style.borderStyle = 'solid';
 
-        card.querySelector('.status-btn').innerText = 'INTERVIEW';
-        card.querySelector('.status-btn').style.color = '#10B981';
-
-       
         if (!interviewList.some(item => item.companyName === companyName)) {
             interviewList.push(cardInfo);
         }
-       
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
     } 
     
-  
     else if (event.target.classList.contains('rejected-btn')) {
-       
-        card.querySelector('.status-btn').innerText = 'REJECTED';
-        card.querySelector('.status-btn').style.color = '#EF4444';
+        statusButton.innerText = 'REJECTED';
+        statusButton.style.color = '#EF4444';
+        statusButton.style.borderColor = '#EF4444';
+        statusButton.style.borderWidth = '1px';
+        statusButton.style.borderStyle = 'solid';
 
-     
         if (!rejectedList.some(item => item.companyName === companyName)) {
             rejectedList.push(cardInfo);
         }
-  
         interviewList = interviewList.filter(item => item.companyName !== companyName);
     }
     
-
     else if (event.target.closest('.delete-btn')) {
         card.remove();
-     
         interviewList = interviewList.filter(item => item.companyName !== companyName);
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
     }
 
- 
     if (currentStatus === 'interview-filter-btn') {
         renderFilteredCards(interviewList, '#10B981', 'INTERVIEW');
     } else if (currentStatus === 'rejected-filter-btn') {
@@ -129,16 +124,26 @@ function renderFilteredCards(list, color, statusText) {
     for (const job of list) {
         let div = document.createElement('div');
         div.className = 'job-card flex justify-between bg-white border border-gray-200 rounded-xl py-6 px-6 mb-5';
+        
+        
+        const interviewHoverClasses = "hover:bg-[#10b981FF] hover:text-white transition-all";
+        const rejectedHoverClasses = "hover:bg-[#ef4444] hover:text-white transition-all";
+
         div.innerHTML = `
             <div>
                 <h3 class="company-name text-[18px] text-[#002C5C] font-semibold mb-1">${job.companyName}</h3>
                 <p class="job-position text-[#64748B] text-[16px] font-normal">${job.position}</p>
                 <p class="job-details text-[#64748B] text-[14px] font-normal mt-5">${job.details}</p>
-                <button class="status-btn text-[14px] font-medium mt-7 py-2 px-3 bg-[#eef4ff] rounded-sm uppercase" style="color: ${color}">${statusText}</button>
+                
+                <button class="status-btn text-[14px] font-medium mt-7 py-2 px-3 bg-[#eef4ff] rounded-sm uppercase border" 
+                        style="color: ${color}; border-color: ${color};">
+                    ${statusText}
+                </button>
+                
                 <p class="job-desc text-[#323B49] text-[14px] font-normal mb-5 mt-2">${job.description}</p>
                 <div class="flex gap-2">
-                    <button class="interview-btn py-2 px-3 border border-[#10b981FF] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#10b981FF]">Interview</button>
-                    <button class="rejected-btn py-2 px-3 border border-[#EF4444] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#EF4444]">Rejected</button>
+                    <button class="interview-btn py-2 px-3 border border-[#10b981FF] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#10b981FF] ${interviewHoverClasses}">Interview</button>
+                    <button class="rejected-btn py-2 px-3 border border-[#EF4444] rounded-sm text-[14px] font-medium cursor-pointer uppercase text-[#EF4444] ${rejectedHoverClasses}">Rejected</button>
                 </div>
             </div>
             <div><button class="delete-btn cursor-pointer"><i class="fa-regular fa-trash-can text-[#64748B]"></i></button></div>
