@@ -84,7 +84,7 @@ parentDiv.addEventListener("click", function (event) {
 });
 ```
 ---
-## Q5: Difference Between `preventDefault()` and `stopPropagation()`
+### Q5: Difference Between `preventDefault()` and `stopPropagation()`
 
 **Answer:** The main differences are shown below:
 
